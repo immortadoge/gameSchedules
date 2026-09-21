@@ -1,0 +1,412 @@
+/*
+ * Grouped-list styling that echoes the SwiftUI `List` the iOS app used,
+ * with a light and dark palette driven by the system preference.
+ */
+:root {
+  --bg: #f2f2f7;
+  --card: #ffffff;
+  --separator: #d8d8dd;
+  --text: #1c1c1e;
+  --text-secondary: #56565c;
+  --accent: #0a62c2;
+  --accent-soft: rgba(10, 98, 194, 0.1);
+  --error: #b3261e;
+  --error-soft: #fdecea;
+  --warning-text: #7a4b00;
+  --warning-soft: #fff4e0;
+  --orange: #a35200;
+  --purple: #6a3ab2;
+  --red: #b3261e;
+  --radius: 12px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --card: #1c1c1e;
+    --separator: #38383a;
+    --text: #f2f2f7;
+    --text-secondary: #9e9ea5;
+    --accent: #64b0ff;
+    --accent-soft: rgba(100, 176, 255, 0.14);
+    --error: #ff8a80;
+    --error-soft: rgba(255, 138, 128, 0.12);
+    --warning-text: #ffcf7a;
+    --warning-soft: rgba(255, 207, 122, 0.12);
+    --orange: #ffb066;
+    --purple: #c5a3ff;
+    --red: #ff8a80;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji';
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.app {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1.25rem 1rem 3rem;
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.page-header__title {
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+.page-header__subtitle {
+  margin: 0.25rem 0 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 0.375rem;
+  color: var(--accent);
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Sections --------------------------------------------------------------- */
+
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.section__title {
+  margin: 0 0 0.5rem 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.section__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+}
+
+.row + .row {
+  border-top: 1px solid var(--separator);
+}
+
+.row--compact {
+  gap: 0.25rem;
+}
+
+.row--placeholder {
+  align-items: center;
+  flex-direction: row;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+}
+
+.row--link {
+  padding: 0;
+}
+
+/* Game rows -------------------------------------------------------------- */
+
+.row__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.row__meta-spacer {
+  flex: 1 1 auto;
+}
+
+.row__time {
+  font-variant-numeric: tabular-nums;
+}
+
+.row__body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.matchup {
+  display: flex;
+  flex-direction: column;
+}
+
+.matchup__team {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.matchup__at {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.status--scheduled {
+  color: var(--accent);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.overview__matchup {
+  margin: 0;
+  font-size: 0.9375rem;
+}
+
+.overview__detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 1.25rem;
+}
+
+.overview__result {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.broadcasts {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+/* Badges ----------------------------------------------------------------- */
+
+.badge {
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.badge--league {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.badge--playoffs {
+  color: var(--orange);
+}
+
+.badge--champions {
+  color: var(--purple);
+}
+
+.badge--masters {
+  color: var(--orange);
+}
+
+.badge--muted {
+  color: var(--text-secondary);
+}
+
+/* Team links ------------------------------------------------------------- */
+
+.team-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.team-link:hover {
+  background: var(--accent-soft);
+}
+
+.team-link__icon {
+  flex: 0 0 1.75rem;
+  font-size: 1.375rem;
+  text-align: center;
+}
+
+.team-link__text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.team-link__name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.team-link__sport {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.team-link__chevron {
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+}
+
+/* Controls --------------------------------------------------------------- */
+
+.button {
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button:hover:not(:disabled) {
+  background: var(--accent-soft);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.button--plain {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  font-size: 0.75rem;
+  text-decoration: underline;
+}
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Banners & misc --------------------------------------------------------- */
+
+.banner {
+  margin: 0 0 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+}
+
+.banner--error {
+  background: var(--error-soft);
+  color: var(--error);
+}
+
+.banner--warning {
+  background: var(--warning-soft);
+  color: var(--warning-text);
+}
+
+.footnote {
+  color: var(--text-secondary);
+  font-size: 0.8125rem;
+}
+
+.footnote p {
+  margin: 0;
+}
+
+code {
+  padding: 0.0625rem 0.25rem;
+  border-radius: 4px;
+  background: var(--card);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125em;
+}
+
+.spinner {
+  display: inline-block;
+  width: 0.875rem;
+  height: 0.875rem;
+  border: 2px solid var(--separator);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 3s;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}
